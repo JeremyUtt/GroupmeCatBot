@@ -1,0 +1,18 @@
+[
+	{
+		"accountIndex": 0,
+		"username": "foo",
+		"email": "foo",
+		"password": "foo",
+		"phoneNum": "foo",
+		"token": "foo"
+	},
+	{
+		"accountIndex": 1,
+		"username": "foo",
+		"email": "foo",
+		"password": "foo",
+		"phoneNum": "foo",
+		"token": "foo"
+	}
+]
