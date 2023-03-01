@@ -2,23 +2,23 @@ import json
 
 
 def readFileData():
-    accountsFile = open("accounts.json", "r")
+    accountsFile = open("data/accounts.json", "r")
     accounts = json.loads(accountsFile.read())
     accountsFile.close()
  
-    groupsFile = open("groups.json", "r")
+    groupsFile = open("data/groups.json", "r")
     groups = json.loads(groupsFile.read())
     groupsFile.close()
     return (accounts, groups)
     
 def writeAccountData(accountIndex, index, data):
-    jsonFile = open("accounts.json", "r")
+    jsonFile = open("data/accounts.json", "r")
     accounts = json.loads(jsonFile.read())
     jsonFile.close()
     
     accounts[accountIndex][index] = data
     
-    jsonFile = open("accounts.json", "w")
+    jsonFile = open("data/accounts.json", "w")
     jsonFile.write(json.dumps(accounts))
     jsonFile.close()
     
