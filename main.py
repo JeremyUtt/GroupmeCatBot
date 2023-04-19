@@ -8,7 +8,7 @@ from groupmeAPI import *
 from accountManagement import *
 
 
-def main():   
+def main():
     (accounts, groups) = readFileData()
     
     account = selectAccount(accounts)
@@ -16,9 +16,11 @@ def main():
     
     accessToken = getAccessToken(account)
 
+    count = int(input("How many photos?"))
 
-
-    for i in range(0, 1):
+    for i in range(0, count):
+        print(f"fetching and sending cat {i+1} to group {groupId}")
+        
         (contentType, rawImage) = getCat()
 
         image_url = uploadImage(accessToken, contentType, rawImage)
