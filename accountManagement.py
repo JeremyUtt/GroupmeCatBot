@@ -1,5 +1,5 @@
 import json
-
+import glob
 
 def readFileData():
     accountsFile = open("data/accounts.json", "r")
@@ -46,3 +46,60 @@ def selectGroup(groups):
     if selectionStr != "":
         selection = int(selectionStr)
     return groups[selection]["id"]
+
+def setupAccounts():
+    files = glob.glob("data/*")
+
+    if "data/groups.json" not in files:
+        # os.rename("data/groups.template.json", "data/groups.json")
+        tempFile = open("data/groups.json", "w")
+        tempFile.write(json.dumps([]))
+        tempFile.close()
+
+    
+    if "data/accounts.json" not in files:
+        # os.rename("data/accounts.template.json", "data/accounts.json")
+        tempFile = open("data/accounts.json", "w")
+        tempFile.write(json.dumps([]))
+        tempFile.close()
+   
+def addAccount():
+    username = input("Enter Username:")
+    email = input("Enter Email:")
+    password = input("Enter Password:")
+    phone = input("Enter Phone number:")
+
+    accountsFile = open("data/accounts.json", "r")
+    accounts = json.loads(accountsFile.read())
+    accountsFile.close()
+
+    accounts.append({
+		"accountIndex": len(accounts),
+		"username": username,
+		"email": email,
+		"password": password,
+		"phoneNum": phone,
+		"token": ""
+    })
+
+    accountsFile = open("data/accounts.json", "w")
+    accountsFile.write(json.dumps(accounts))
+    accountsFile.close()
+
+def addGroup():
+    name = input("Enter Group Name:")
+    id = input("Enter Group ID:")
+
+    groupsFile = open("data/groups.json", "r")
+    groups = json.loads(groupsFile.read())
+    groupsFile.close()
+
+    groups.append({
+        "name": name,
+        "id": id
+    })
+
+    groupsFile = open("data/groups.json", "w")
+    groupsFile.write(json.dumps(groups))
+    groupsFile.close()
+    

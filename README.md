@@ -8,12 +8,16 @@ Simply clone this repository and run main.py in python
 
 ## Configuration
 
-Currently, there is no feature to configure groupme accounts within the program. To do so, copy the 
-**accounts template.json** and **groups template.json**  to **accounts.json** and **groups.json** respectively.
-Then, fill in your account and group information into their respective locations in the files. 
-Leave the token field in **accounts.json** blank. 
+To give the bot access to your groupme account, select the **Add Account** Option when prompted and follow in-program directions.
 
-> Note: I plan to add account integration into the program later on
+Repeat this same process to add a group ID to the bot.
+
+To find the ID for your group, find an invite link to the group. it should be in the format:
+
+     groupme.com/join_group/**{ID HERE}**/{UNRELATED}
+
+the nunbers in the **ID HERE** section is the Groups ID number.
+
 
 ## Usage
 
@@ -21,4 +25,11 @@ After configuring, run the **main.py** file in python. select which account and 
 The first time you use a account, you will be sent a SMS verification code to your group-me account phone number. 
 Enter that number into the program when prompted to authenticate the login. 
 After the first login, a access token will be stored in your **accounts.json** file meaning future logins will not require a SMS pin. 
+
+
+## Known Quirks
+
+- If Groupme access token is already found, the program assumes it is valad without checking
+
+- The program assumes the account you select has already joined the group you selected
 

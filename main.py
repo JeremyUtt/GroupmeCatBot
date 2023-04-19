@@ -9,6 +9,27 @@ from accountManagement import *
 
 
 def main():
+    setupAccounts()
+    
+    
+    askQuestion = True
+    while askQuestion:
+        print("What would you like to do?")
+        print("1: Run Cat Bot")
+        print("2: Add Account to Database")
+        print("3: Add Group to Database")
+        option = input("Selection (1-3, default 1):")
+        if option == "1" or option == "":
+            askQuestion = False
+        elif option == "2":
+            addAccount()
+        elif option == "3":
+            addGroup()
+        else:
+            print("Invalad Option")
+            continue
+    
+
     (accounts, groups) = readFileData()
     
     account = selectAccount(accounts)
@@ -55,7 +76,7 @@ def getAccessToken(account):
     return token
     
 def getCat():
-    """Get a random photo od a cat using an API
+    """Get a random photo of a cat using an API
 
     Returns:
         str: contentType
