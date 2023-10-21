@@ -2,7 +2,7 @@
 import requests
 import json
 from time import sleep
-
+import os
 # Custom Librarys
 from groupmeAPI import *
 from accountManagement import *
@@ -38,9 +38,17 @@ def main():
     accessToken = getAccessToken(account)
 
     count = int(input("How many photos?"))
-
+    
+    # for i in range(0, 2):
+    pids = []
+    pids.append(os.getpid())
+    pids.append(os.fork())
+    pids.append(os.fork())
+    
+    
+    print(f"pids: {pids}")
     for i in range(0, count):
-        print(f"fetching and sending cat {i+1} to group {groupId}")
+        print(f"fetching and sending cat {i+1} from fork {os.getpid()} to group {groupId}")
         
         (contentType, rawImage) = getCat()
 

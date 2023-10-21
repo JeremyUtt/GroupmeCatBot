@@ -108,37 +108,42 @@ def createPost(accessToken, groupID, text, imageURLs):
     Returns:
         str: Post ID
     """
-    
-    
-    res = requests.request("POST", f"https://api.groupme.com/v3/groups/{groupID}/messages", 
-        headers={
-            'Content-Type': 'application/json',
-            'X-Access-Token': accessToken
-        }, 
-        data=json.dumps({
-            "message": {
-                # create random ID for the post
-                "source_guid": urandom(16).hex(),
-                # TODO: understand how list(map(foo, bar), foo2) works
-                "attachments": list(
-                    map(lambda imageURL: {
-                        "type": "image",
-                        "url": imageURL
-                    },
-                    imageURLs
-                    )
-                ),
-                "text": text
-            }
-        })
-    )
-    
-    
-    # gets the ID of the post from the server
-    # (different than "source_guid"?)
-    # TODO: is source_guid and id different?
-    id = json.loads(res.text)["response"]["message"]["id"]
-    return id
+    try:
+        
+
+        res = requests.request("POST", f"https://api.groupme.com/v3/groups/{groupID}/messages", 
+            headers={
+                'Content-Type': 'application/json',
+                'X-Access-Token': accessToken
+            }, 
+            data=json.dumps({
+                "message": {
+                    # create random ID for the post
+                    "source_guid": urandom(16).hex(),
+                    # TODO: understand how list(map(foo, bar), foo2) works
+                    "attachments": list(
+                        map(lambda imageURL: {
+                            "type": "image",
+                            "url": imageURL
+                        },
+                        imageURLs
+                        )
+                    ),
+                    "text": text
+                }
+            })
+        )
+
+        
+        # gets the ID of the post from the server
+        # (different than "source_guid"?)
+        # TODO: is source_guid and id different?
+        
+        # try:
+        return json.loads(res.text)["response"]["message"]["id"]
+    except:
+        print("Error creating post")
+        return None
 
 def uploadImage(accessToken, contentType, rawImage):
     """ Since GroupMe does not like outside images, 
@@ -153,17 +158,21 @@ def uploadImage(accessToken, contentType, rawImage):
     Returns:
         str: Groupme Photo Url
     """
-    
-    
-    # Uploads the photo to GroupMe
-    res = requests.request("POST", "https://image.groupme.com/pictures", 
-        headers={
-            'Content-Type': contentType,
-            'X-Access-Token': accessToken
-        }, 
-        data=rawImage
-    )
-    
-    # Gets the new photo URL from the responce 
-    picture_url = json.loads(res.text)["payload"]["picture_url"]
-    return picture_url
+    try:
+        
+        
+        # Uploads the photo to GroupMe
+        res = requests.request("POST", "https://image.groupme.com/pictures", 
+            headers={
+                'Content-Type': contentType,
+                'X-Access-Token': accessToken
+            }, 
+            data=rawImage
+        )
+        
+        # Gets the new photo URL from the responce 
+        picture_url = json.loads(res.text)["payload"]["picture_url"]
+        return picture_url
+    except:
+        print("Error uploading image")
+        return None
