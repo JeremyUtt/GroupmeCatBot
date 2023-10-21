@@ -85,13 +85,13 @@ def getCat():
     
     
     # go to given Url, returns another Url of a cat picture
-    res = requests.get('https://some-random-api.ml/img/cat')
+    res = requests.get('https://cataas.com/cat')
     
     # gets the New URL from the responce
-    parsed = json.loads(res.text)["link"]
+    # parsed = json.loads(res.text)["link"]
     
     # Get the photo of the cat
-    res = requests.request("GET", parsed)
+    # res = requests.request("GET", parsed)
 
     # get the type of content and return w/ it and photo data
     contentType = res.headers.get("Content-Type")
