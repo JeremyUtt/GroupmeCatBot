@@ -29,7 +29,7 @@ After the first login, a access token will be stored in your **accounts.json** f
 
 ## Known Quirks
 
-- If Groupme access token is already found, the program assumes it is valad without checking
+- If Groupme access token is already found, the program assumes it is valid without checking
 
 - The program assumes the account you select has already joined the group you selected
 
