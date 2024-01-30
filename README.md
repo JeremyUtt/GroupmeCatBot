@@ -1,4 +1,4 @@
-# Groupme-Cat-Bot
+# GroupmeCatBot
 
 A bot that can automatically generate images of cats and upload them to your group-me group. 
 
